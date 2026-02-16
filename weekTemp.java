@@ -10,7 +10,7 @@ public class weekTemp {
         ArrayList<String> days = new ArrayList<>();
         ArrayList<Double> temps = new ArrayList<>();
 
-        // Add days of the week
+        // days of the week
         days.add("Monday");
         days.add("Tuesday");
         days.add("Wednesday");
@@ -19,7 +19,7 @@ public class weekTemp {
         days.add("Saturday");
         days.add("Sunday");
 
-        // Collect temperatures
+        // Ask for the temperatures from user input
         for (String day : days) {
             System.out.print("Please enter the average temperature for " + day + ": ");
 
@@ -33,21 +33,23 @@ public class weekTemp {
             temps.add(temp);
         }
 
-        input.nextLine(); // clear buffer
+        input.nextLine();
 
-        // User query loop
+        // loop to ask what they would like to be printed
+        // options are specific day, whole week, or done to complete the loop
         while (true) {
             System.out.print(
                     "\nPlease enter the day you would like, or if you want the whole week please enter 'week', once done please enter 'done': ");
             String choice = input.nextLine().trim();
 
-            // Stop the program
+            // done will lead to the program to finish
             if (choice.equalsIgnoreCase("done")) {
                 System.out.println("All done.");
                 break;
             }
 
-            // Show whole week
+            // week will show all days with their temperature along the average for the
+            // whole week
             if (choice.equalsIgnoreCase("week")) {
                 double total = 0;
 
@@ -62,7 +64,7 @@ public class weekTemp {
                 continue;
             }
 
-            // Show a single day
+            // Show the date and the avg temp for it
             String formatted = capitalize(choice);
             if (days.contains(formatted)) {
                 int index = days.indexOf(formatted);
@@ -75,10 +77,12 @@ public class weekTemp {
         input.close();
     }
 
-    // Helper to match user input to capitalized day names
+    // Fix user input to avoid uncesary problems
+    // makes lower and upper case match
     public static String capitalize(String str) {
         if (str.isEmpty())
             return str;
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
+
 }
