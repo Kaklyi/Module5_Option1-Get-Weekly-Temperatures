@@ -1,0 +1,41 @@
+start
+
+Create list days = Mon-Sun
+Create empty list temps
+
+For each day in days
+    Ask user for Tempt
+
+    While input is not a number
+        Ask again
+    EndWhile
+
+    Store temperature in temps
+EndFor
+
+Clear leftover input
+
+While true
+    Ask user input a day, "week", or "done"
+
+    If input = "done"
+        Print "All done"
+        Stop loop
+    EndIf
+
+    If input = "week"
+            Print days and temperature
+        EndFor
+
+        average = total / days
+        Print average
+    Else
+
+        Format input to avoid errors
+
+        If day exists
+            Find index and print temperature
+        Else
+            Print error message
+
+End
