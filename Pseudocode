@@ -1,41 +1,61 @@
-start
+START
 
-Create list days = Mon-Sun
-Create empty list temps
+// Create list of days in the week
+SET days = [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
 
-For each day in days
-    Ask user for Tempt
+// Create empty list to store temperatures
+SET temps = empty list
 
-    While input is not a number
-        Ask again
-    EndWhile
+// Collect temperatures for each day
+FOR each day IN days
+    DISPLAY "Enter temperature for" day
+    INPUT temp
 
-    Store temperature in temps
-EndFor
+    // Validate input
+    WHILE input is not a number
+        DISPLAY "Please enter a valid number"
+        INPUT temp
+    END WHILE
 
-Clear leftover input
+    // Store temperature
+    ADD temp TO temps
+END FOR
 
-While true
-    Ask user input a day, "week", or "done"
+// Ask user what information they want to see
+WHILE TRUE
 
-    If input = "done"
-        Print "All done"
-        Stop loop
-    EndIf
+    DISPLAY "Enter a day, 'week' to see all temperatures, or 'done' to exit"
+    INPUT choice
 
-    If input = "week"
-            Print days and temperature
-        EndFor
+    IF choice = "done"
+        DISPLAY "All done"
+        EXIT LOOP
+    END IF
 
-        average = total / days
-        Print average
-    Else
+    // Show all temperatures and weekly average
+    IF choice = "week"
+        SET total = 0
 
-        Format input to avoid errors
+        FOR each index i in days
+            DISPLAY days[i] and temps[i]
+            SET total = total + temps[i]
+        END FOR
 
-        If day exists
-            Find index and print temperature
-        Else
-            Print error message
+        SET average = total / number of days
+        DISPLAY average
 
-End
+    ELSE
+
+        // Check if entered day exists
+        IF day exists in days
+            FIND index of day
+            DISPLAY corresponding temperature
+        ELSE
+            DISPLAY "Invalid day"
+        END IF
+
+    END IF
+
+END WHILE
+
+END
